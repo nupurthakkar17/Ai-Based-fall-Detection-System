@@ -1,0 +1,145 @@
+2026-06-10 12:25:10,771 [INFO] app: FallGuard AI started [development]
+2026-06-10 12:25:14,476 [INFO] app.services.fall_detector: Downloading MediaPipe pose model (~5MB)...
+2026-06-10 12:25:15,582 [INFO] app.services.fall_detector: Model downloaded.
+2026-06-10 12:25:16,475 [INFO] app.services.fall_detector: PoseLandmarker ready
+2026-06-10 12:25:16,483 [INFO] app.services.fall_detector: YOLO unavailable — pose-only mode
+2026-06-10 12:25:16,490 [INFO] app.services.fall_detector: FallDetector initialised (MediaPipe Tasks API)
+2026-06-10 12:25:16,559 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2026-06-10 12:25:16,565 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-06-10 12:25:16,568 [INFO] werkzeug:  * Restarting with stat
+2026-06-10 12:25:24,132 [INFO] app: FallGuard AI started [development]
+2026-06-10 12:25:30,216 [INFO] app.services.fall_detector: PoseLandmarker ready
+2026-06-10 12:25:30,217 [INFO] app.services.fall_detector: YOLO unavailable — pose-only mode
+2026-06-10 12:25:30,222 [INFO] app.services.fall_detector: FallDetector initialised (MediaPipe Tasks API)
+2026-06-10 12:25:30,260 [WARNING] werkzeug:  * Debugger is active!
+2026-06-10 12:25:30,282 [INFO] werkzeug:  * Debugger PIN: 211-173-758
+2026-06-10 12:25:37,988 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:25:37] "[32mGET / HTTP/1.1[0m" 302 -
+2026-06-10 12:25:38,464 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:25:38] "[35m[1mGET /auth/login HTTP/1.1[0m" 500 -
+2026-06-10 12:25:39,087 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:25:39] "GET /auth/login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-06-10 12:25:39,220 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:25:39] "GET /auth/login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-06-10 12:25:39,439 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:25:39] "GET /auth/login?__debugger__=yes&cmd=resource&f=console.png&s=t5V1VjSC3ycJrH1laGfT HTTP/1.1" 200 -
+2026-06-10 12:25:39,882 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:25:39] "GET /auth/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-06-10 12:26:02,002 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:26:02] "[32mGET / HTTP/1.1[0m" 302 -
+2026-06-10 12:26:02,225 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:26:02] "[35m[1mGET /auth/login HTTP/1.1[0m" 500 -
+2026-06-10 12:26:02,318 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:26:02] "GET /auth/login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2026-06-10 12:26:02,621 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:26:02] "GET /auth/login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2026-06-10 12:26:03,087 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:26:03] "GET /auth/login?__debugger__=yes&cmd=resource&f=console.png&s=t5V1VjSC3ycJrH1laGfT HTTP/1.1" 200 -
+2026-06-10 12:26:03,353 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:26:03] "GET /auth/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2026-06-10 12:28:15,992 [INFO] app: FallGuard AI started [development]
+2026-06-10 12:28:18,383 [INFO] app.services.fall_detector: PoseLandmarker ready
+2026-06-10 12:28:18,384 [INFO] app.services.fall_detector: YOLO unavailable — pose-only mode
+2026-06-10 12:28:18,385 [INFO] app.services.fall_detector: FallDetector initialised (MediaPipe Tasks API)
+2026-06-10 12:28:18,445 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.17:5000
+2026-06-10 12:28:18,446 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-06-10 12:28:18,446 [INFO] werkzeug:  * Restarting with stat
+2026-06-10 12:28:20,097 [INFO] app: FallGuard AI started [development]
+2026-06-10 12:28:21,894 [INFO] app.services.fall_detector: PoseLandmarker ready
+2026-06-10 12:28:21,896 [INFO] app.services.fall_detector: YOLO unavailable — pose-only mode
+2026-06-10 12:28:21,896 [INFO] app.services.fall_detector: FallDetector initialised (MediaPipe Tasks API)
+2026-06-10 12:28:21,911 [WARNING] werkzeug:  * Debugger is active!
+2026-06-10 12:28:21,920 [INFO] werkzeug:  * Debugger PIN: 211-173-758
+2026-06-10 12:28:31,979 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:31] "GET /auth/login HTTP/1.1" 200 -
+2026-06-10 12:28:32,234 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:32] "GET /static/js/main.js HTTP/1.1" 200 -
+2026-06-10 12:28:32,235 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:32] "GET /static/css/main.css HTTP/1.1" 200 -
+2026-06-10 12:28:32,711 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:32] "[32mGET /api/events?falls_only=true&limit=1 HTTP/1.1[0m" 302 -
+2026-06-10 12:28:32,898 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:32] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-10 12:28:32,981 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:32] "GET /auth/login?next=/api/events?falls_only%3Dtrue%26limit%3D1 HTTP/1.1" 200 -
+2026-06-10 12:28:53,840 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:53] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2026-06-10 12:28:53,946 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:53] "GET /monitor HTTP/1.1" 200 -
+2026-06-10 12:28:54,333 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:54] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2026-06-10 12:28:54,334 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-06-10 12:28:54,642 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:28:54] "GET /api/events?falls_only=true&limit=1 HTTP/1.1" 200 -
+2026-06-10 12:30:37,822 [INFO] app.services.camera_service: Capture loop started
+2026-06-10 12:30:37,822 [INFO] app.services.camera_service: Camera 0 started
+2026-06-10 12:30:37,827 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:37] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:30:38,252 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:38] "GET /settings/ HTTP/1.1" 200 -
+2026-06-10 12:30:38,565 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:38] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2026-06-10 12:30:38,638 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-06-10 12:30:38,721 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:38] "GET /api/events?falls_only=true&limit=1 HTTP/1.1" 200 -
+2026-06-10 12:30:53,628 [INFO] app.services.camera_service: Capture loop started
+2026-06-10 12:30:53,628 [INFO] app.services.camera_service: Camera 0 started
+2026-06-10 12:30:53,631 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:53] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:30:53,833 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:53] "GET /monitor HTTP/1.1" 200 -
+2026-06-10 12:30:53,880 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:53] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2026-06-10 12:30:54,191 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-06-10 12:30:54,560 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:54] "GET /api/events?falls_only=true&limit=1 HTTP/1.1" 200 -
+2026-06-10 12:30:56,146 [WARNING] app.services.camera_service: Frame read failed, retrying...
+2026-06-10 12:30:56,227 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:56] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:30:57,473 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:57] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:30:58,251 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:58] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:30:59,371 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:30:59] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:31:02,913 [INFO] app.services.camera_service: Capture loop started
+2026-06-10 12:31:02,913 [INFO] app.services.camera_service: Camera 0 started
+2026-06-10 12:31:02,915 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:02] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:31:03,557 [INFO] app.services.camera_service: Capture loop started
+2026-06-10 12:31:03,557 [INFO] app.services.camera_service: Camera 0 started
+2026-06-10 12:31:03,558 [INFO] app.services.camera_service: Capture loop started
+2026-06-10 12:31:03,558 [INFO] app.services.camera_service: Camera 0 started
+2026-06-10 12:31:03,558 [INFO] app.services.camera_service: Capture loop started
+2026-06-10 12:31:03,558 [INFO] app.services.camera_service: Camera 0 started
+2026-06-10 12:31:03,559 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:03] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:31:03,562 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:03] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:31:03,572 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:03] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:31:04,555 [ERROR] app.services.camera_service: Frame processing error: '<' not supported between instances of 'NormalizedLandmark' and 'int'
+Traceback (most recent call last):
+  File "C:\Users\Nupur\Downloads\FallGuard_AI_v3\fall_detection_\app\services\camera_service.py", line 110, in _capture_loop
+    result = self.detector.process_frame(frame)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nupur\Downloads\FallGuard_AI_v3\fall_detection_\app\services\fall_detector.py", line 196, in process_frame
+    person_box = (min(xs), min(ys), max(xs), max(ys))
+                  ^^^^^^^
+TypeError: '<' not supported between instances of 'NormalizedLandmark' and 'int'
+2026-06-10 12:31:04,558 [ERROR] app.services.camera_service: Frame processing error: '<' not supported between instances of 'NormalizedLandmark' and 'int'
+Traceback (most recent call last):
+  File "C:\Users\Nupur\Downloads\FallGuard_AI_v3\fall_detection_\app\services\camera_service.py", line 110, in _capture_loop
+    result = self.detector.process_frame(frame)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nupur\Downloads\FallGuard_AI_v3\fall_detection_\app\services\fall_detector.py", line 196, in process_frame
+    person_box = (min(xs), min(ys), max(xs), max(ys))
+                  ^^^^^^^
+TypeError: '<' not supported between instances of 'NormalizedLandmark' and 'int'
+2026-06-10 12:31:04,720 [ERROR] app.services.camera_service: Frame processing error: '<' not supported between instances of 'NormalizedLandmark' and 'int'
+Traceback (most recent call last):
+  File "C:\Users\Nupur\Downloads\FallGuard_AI_v3\fall_detection_\app\services\camera_service.py", line 110, in _capture_loop
+    result = self.detector.process_frame(frame)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Nupur\Downloads\FallGuard_AI_v3\fall_detection_\app\services\fall_detector.py", line 196, in process_frame
+    person_box = (min(xs), min(ys), max(xs), max(ys))
+                  ^^^^^^^
+TypeError: '<' not supported between instances of 'NormalizedLandmark' and 'int'
+2026-06-10 12:31:24,609 [ERROR] app.services.camera_service: DB save error: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+2026-06-10 12:31:24,631 [WARNING] app.services.camera_service: FALL DETECTED — conf=0.72 event_id=unknown
+2026-06-10 12:31:27,740 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-10 12:31:27,858 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-10 12:31:28,541 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-10 12:31:33,176 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:33] "[33mPOST /alerts/resolve/unknown HTTP/1.1[0m" 404 -
+2026-06-10 12:31:59,990 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:31:59] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:32:01,222 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:01] "POST /api/camera/start HTTP/1.1" 200 -
+2026-06-10 12:32:13,689 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:13] "GET /alerts/ HTTP/1.1" 200 -
+2026-06-10 12:32:13,851 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:13] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2026-06-10 12:32:14,104 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-06-10 12:32:14,481 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:14] "GET /api/events?falls_only=true&limit=1 HTTP/1.1" 200 -
+2026-06-10 12:32:20,313 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:20] "GET /history HTTP/1.1" 200 -
+2026-06-10 12:32:20,545 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:20] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2026-06-10 12:32:20,695 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-06-10 12:32:21,066 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:21] "GET /api/events?falls_only=true&limit=1 HTTP/1.1" 200 -
+2026-06-10 12:32:24,355 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:24] "GET /analytics/ HTTP/1.1" 200 -
+2026-06-10 12:32:24,637 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:24] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2026-06-10 12:32:24,730 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:24] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-06-10 12:32:25,166 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:25] "GET /api/events?falls_only=true&limit=1 HTTP/1.1" 200 -
+2026-06-10 12:32:25,208 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:25] "GET /analytics/data HTTP/1.1" 200 -
+2026-06-10 12:32:31,393 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:31] "GET /monitor HTTP/1.1" 200 -
+2026-06-10 12:32:31,696 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:31] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2026-06-10 12:32:31,780 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2026-06-10 12:32:32,122 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:32] "GET /api/events?falls_only=true&limit=1 HTTP/1.1" 200 -
+2026-06-10 12:32:58,456 [INFO] werkzeug: 127.0.0.1 - - [10/Jun/2026 12:32:58] "POST /api/camera/start HTTP/1.1" 200 -

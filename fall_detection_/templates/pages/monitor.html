@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% block title %}Live Monitor{% endblock %}
+{% block breadcrumb %}Live Monitoring Dashboard{% endblock %}
+
+{% block content %}
+<!-- Stats Row -->
+<div class="stats-grid">
+  <div class="stat-card danger">
+    <div class="stat-icon red"><i class="fa-solid fa-person-falling-burst"></i></div>
+    <div class="stat-value" id="statFalls">0</div>
+    <div class="stat-label">Falls Today</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon blue"><i class="fa-solid fa-eye"></i></div>
+    <div class="stat-value" id="statHours">0h</div>
+    <div class="stat-label">Monitored Today</div>
+  </div>
+  <div class="stat-card success">
+    <div class="stat-icon green"><i class="fa-solid fa-check-shield"></i></div>
+    <div class="stat-value" id="statFPS">—</div>
+    <div class="stat-label">Current FPS</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon purple"><i class="fa-solid fa-brain"></i></div>
+    <div class="stat-value" id="statConf">—</div>
+    <div class="stat-label">AI Confidence</div>
+  </div>
+</div>
+
+<!-- Main Grid -->
+<div class="dashboard-grid">
+
+  <!-- Camera Feed -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <i class="fa-solid fa-video"></i> Live Camera Feed
+      </div>
+      <div class="flex gap-8">
+        <select id="cameraSelect" class="form-control" style="width:auto;padding:5px 10px;font-size:12px">
+          <option value="0">Camera 0</option>
+          <option value="1">Camera 1</option>
+          <option value="2">Camera 2</option>
+        </select>
+        <button id="startCameraBtn" class="btn btn-primary btn-sm" onclick="startCamera(document.getElementById('cameraSelect').value)">
+          <i class="fa-solid fa-play"></i> Start
+        </button>
+        <button class="btn btn-ghost btn-sm" onclick="captureSnapshot()" title="Snapshot">
+          <i class="fa-solid fa-camera"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="camera-container">
+        <img id="cameraFeed" style="display:none;width:100%;height:100%;object-fit:cover">
+        <div class="camera-placeholder" id="cameraPlaceholder">
+          <i class="fa-solid fa-video-slash"></i>
+          <p>Camera Offline — Press Start to begin monitoring</p>
+          <button class="btn btn-primary btn-sm" onclick="startCamera(0)"><i class="fa-solid fa-play"></i> Start Camera</button>
+        </div>
+        <div class="camera-overlay">
+          <div class="camera-badge live" id="liveBadge" style="display:none">● LIVE</div>
+          <div class="camera-badge" id="fpsBadge" style="display:none">0 FPS</div>
+        </div>
+      </div>
+
+      <!-- Detection Info Row -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px">
+        <div class="mini-stat">
+          <div class="mini-label">Angle</div>
+          <div class="mini-val font-mono" id="valAngle">—</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-label">Velocity</div>
+          <div class="mini-val font-mono" id="valVelocity">—</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-label">Surface</div>
+          <div class="mini-val" id="valSurface">—</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-label">Objects</div>
+          <div class="mini-val" id="valObjects">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Panel -->
+  <div style="display:flex;flex-direction:column;gap:16px">
+
+    <!-- Activity Status -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><i class="fa-solid fa-person-running"></i> Current Activity</div>
+      </div>
+      <div class="card-body">
+        <div class="activity-status">
+          <div class="activity-icon-wrap" id="activityIconWrap">
+            <i class="fa-solid fa-circle-question" id="activityIcon"></i>
+          </div>
+          <div class="activity-label" id="activityLabel">Detecting…</div>
+          <div class="activity-sublabel" id="activitySublabel">Camera offline</div>
+        </div>
+
+        <!-- Total confidence -->
+        <div style="margin-top:16px">
+          <div class="conf-row-header">
+            <span class="conf-row-label" style="font-weight:600;color:var(--text-primary)">Fall Confidence</span>
+            <span class="conf-row-value" id="confTotalVal">0%</span>
+          </div>
+          <div class="conf-track" style="height:10px">
+            <div class="conf-bar" id="confTotalBar" style="width:0%"></div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">Alert triggers at ≥85%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confidence Breakdown -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><i class="fa-solid fa-gauge-high"></i> Confidence Breakdown</div>
+      </div>
+      <div class="card-body">
+        {% set factors = [
+          ('confPosture',    'Posture (30%)',    'fa-person'),
+          ('confVelocity',   'Velocity (25%)',   'fa-wind'),
+          ('confHeight',     'Height Δ (20%)',   'fa-arrows-up-down'),
+          ('confInactivity', 'Inactivity (15%)', 'fa-hourglass'),
+          ('confContext',    'Context (10%)',    'fa-bed')
+        ] %}
+        {% for id, label, icon in factors %}
+        <div class="conf-row">
+          <div class="conf-row-header">
+            <span class="conf-row-label"><i class="fa-solid {{ icon }}" style="width:14px;color:var(--accent)"></i> {{ label }}</span>
+            <span class="conf-row-value" id="{{ id }}Val">0%</span>
+          </div>
+          <div class="conf-track">
+            <div class="conf-bar" id="{{ id }}Bar" style="width:0%"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Emergency Contacts -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><i class="fa-solid fa-phone-volume"></i> Emergency Contacts</div>
+        <a href="{{ url_for('settings.index') }}" class="btn btn-ghost btn-sm"><i class="fa-solid fa-plus"></i></a>
+      </div>
+      <div class="card-body">
+        {% if contacts %}
+          {% for c in contacts %}
+          <div class="contact-card">
+            <div class="contact-avatar">{{ c.name[0] }}</div>
+            <div>
+              <div class="contact-name">{{ c.name }}</div>
+              <div class="contact-rel">{{ c.relationship or 'Contact' }} {% if c.phone %}• {{ c.phone }}{% endif %}</div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <p style="font-size:13px;color:var(--text-muted);text-align:center;padding:12px 0">
+            No contacts added. <a href="{{ url_for('settings.index') }}">Add one →</a>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Events (full width) -->
+  <div class="card span-full">
+    <div class="card-header">
+      <div class="card-title"><i class="fa-solid fa-list-ul"></i> Recent Fall Events</div>
+      <a href="{{ url_for('alerts.index') }}" class="btn btn-ghost btn-sm">View All</a>
+    </div>
+    <div class="card-body">
+      {% if recent_events %}
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Time</th><th>Event ID</th><th>Activity</th><th>Confidence</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            {% for e in recent_events %}
+            <tr>
+              <td>{{ e.timestamp[:19] if e.timestamp else '—' }}</td>
+              <td class="font-mono" style="font-size:11px">{{ e.event_id[:8] }}…</td>
+              <td>{{ e.activity_label or '—' }}</td>
+              <td><span class="text-danger font-mono">{{ (e.confidence_total * 100)|int }}%</span></td>
+              <td>
+                {% if e.is_resolved %}
+                  <span class="badge badge-success"><i class="fa-solid fa-check"></i> Resolved</span>
+                {% else %}
+                  <span class="badge badge-danger"><i class="fa-solid fa-circle-exclamation"></i> Unresolved</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+        <div id="recentEventsList" style="display:flex;flex-direction:column;gap:8px">
+          <p style="font-size:13px;color:var(--text-muted);text-align:center;padding:20px 0">
+            <i class="fa-solid fa-check-circle" style="color:var(--success)"></i> No fall events recorded yet.
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Update stat badges from socket
+const origUpdateLiveStats = updateLiveStats;
+updateLiveStats = function(data) {
+  origUpdateLiveStats(data);
+  const fpsEl = document.getElementById('statFPS');
+  if (fpsEl) fpsEl.textContent = `${data.fps || 0}`;
+  const confEl = document.getElementById('statConf');
+  if (confEl) confEl.textContent = `${Math.round((data.confidence||0)*100)}%`;
+};
+
+// Show live badges when camera starts
+const origUpdate = updateCameraFeed;
+updateCameraFeed = function(data) {
+  origUpdate(data);
+  document.getElementById('liveBadge').style.display = 'flex';
+  document.getElementById('fpsBadge').style.display = 'flex';
+};
+
+// Snapshot
+function captureSnapshot() {
+  const img = document.getElementById('cameraFeed');
+  if (!img || !img.src || img.src === window.location.href) { showToast('No live feed to capture', 'error'); return; }
+  const link = document.createElement('a');
+  link.href = img.src;
+  link.download = `snapshot_${Date.now()}.jpg`;
+  link.click();
+  showToast('Snapshot saved', 'success');
+}
+
+// Uptime counter
+let uptimeSecs = 0;
+setInterval(() => {
+  if (!FG.isMonitoring) return;
+  uptimeSecs++;
+  const h = Math.floor(uptimeSecs / 3600);
+  const m = Math.floor((uptimeSecs % 3600) / 60);
+  const el = document.getElementById('statHours');
+  if (el) el.textContent = h > 0 ? `${h}h ${m}m` : `${m}m`;
+}, 1000);
+</script>
+{% endblock %}
+
+<style>
+.mini-stat {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px; text-align: center;
+}
+.mini-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+.mini-val   { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+</style>

@@ -1,0 +1,33 @@
+# FallGuard AI — Python Dependencies
+
+# Core
+flask>=3.0.0
+flask-socketio>=5.3.6
+flask-login>=0.6.3
+flask-sqlalchemy>=3.1.1
+python-dotenv>=1.0.0
+werkzeug>=3.0.1
+
+# AI / Computer Vision
+opencv-python-headless>=4.9.0.80
+mediapipe>=0.10.9
+numpy>=1.26.0
+
+# YOLOv8 (optional but strongly recommended)
+ultralytics>=8.1.0
+
+# Async transport for SocketIO
+eventlet>=0.35.2
+
+# Alerts
+twilio>=8.10.0
+
+# Reports (optional — falls back to HTML)
+weasyprint>=61.0
+
+# Utilities
+pillow>=10.2.0
+python-dateutil>=2.8.2
+
+# Production server
+gunicorn>=21.2.0
