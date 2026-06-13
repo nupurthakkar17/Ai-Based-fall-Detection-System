@@ -40,6 +40,9 @@ class CameraService:
         self.event_image_dir = app_config.get('EVENT_IMAGE_DIR', 'static/events')
         os.makedirs(self.event_image_dir, exist_ok=True)
 
+        # Store Flask app reference so background thread can push an app context
+        self._flask_app = None
+
     # ── Public API ────────────────────────────────────────────────
 
     def start(self, camera_index: int = None):
@@ -47,6 +50,15 @@ class CameraService:
             return {'success': False, 'message': 'Camera already running'}
         if camera_index is not None:
             self.camera_index = camera_index
+
+        # Grab the current Flask app so the capture thread can use it
+        try:
+            from flask import current_app
+            self._flask_app = current_app._get_current_object()
+        except RuntimeError:
+            self._flask_app = None
+            logger.warning("No Flask app context found — DB saves will not work.")
+
         self.cap = cv2.VideoCapture(self.camera_index)
         if not self.cap.isOpened():
             return {'success': False, 'message': f'Cannot open camera {self.camera_index}'}
@@ -181,30 +193,52 @@ class CameraService:
         logger.warning(f"FALL DETECTED — conf={result.confidence:.2f} event_id={event_id}")
 
     def _save_event(self, result, image_path: str, ts: datetime) -> str:
-        """Persist fall event to database. Returns event_id."""
+        """Persist fall event to database inside a Flask app context."""
         import json
-        try:
-            from app import db  # db from app package
-            from app.models.event import Event
-            event = Event(
-                event_type='fall',
-                activity_label=result.activity,
-                is_fall=True,
-                confidence_total=result.confidence,
-                confidence_posture=result.conf_posture,
-                confidence_velocity=result.conf_velocity,
-                confidence_height=result.conf_height,
-                confidence_inactivity=result.conf_inactivity,
-                confidence_context=result.conf_context,
-                body_angle=result.body_angle,
-                velocity=result.velocity,
-                detected_objects=json.dumps(result.detected_objects),
-                image_path=image_path,
-                timestamp=ts
-            )
-            db.session.add(event)
-            db.session.commit()
-            return event.event_id
-        except Exception as e:
-            logger.error(f"DB save error: {e}")
-            return 'unknown'
+
+        def _do_save(app):
+            # FIX: push an app context so SQLAlchemy works from this background thread
+            with app.app_context():
+                try:
+                    from app import db
+                    from app.models.event import Event
+                    event = Event(
+                        event_type='fall',
+                        activity_label=result.activity,
+                        is_fall=True,
+                        confidence_total=result.confidence,
+                        confidence_posture=result.conf_posture,
+                        confidence_velocity=result.conf_velocity,
+                        confidence_height=result.conf_height,
+                        confidence_inactivity=result.conf_inactivity,
+                        confidence_context=result.conf_context,
+                        body_angle=result.body_angle,
+                        velocity=result.velocity,
+                        detected_objects=json.dumps(result.detected_objects),
+                        image_path=image_path,
+                        timestamp=ts
+                    )
+                    db.session.add(event)
+                    db.session.commit()
+                    logger.info(f"Event saved to DB: {event.event_id}")
+                    return event.event_id
+                except Exception as e:
+                    logger.error(f"DB save error: {e}", exc_info=True)
+                    try:
+                        from app import db
+                        db.session.rollback()
+                    except Exception:
+                        pass
+                    return 'unknown'
+
+        if self._flask_app is not None:
+            return _do_save(self._flask_app)
+        else:
+            # Fallback: try importing the app directly
+            try:
+                from app import create_app
+                app = create_app()
+                return _do_save(app)
+            except Exception as e:
+                logger.error(f"Could not get Flask app for DB save: {e}")
+                return 'unknown'

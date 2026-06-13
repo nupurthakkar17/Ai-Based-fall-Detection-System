@@ -9,13 +9,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+# Fallback: if DATABASE_URL env var is missing, use an absolute path to fallguard.db
+_default_db = os.path.join(BASE_DIR, 'fallguard.db')
 
 
 class BaseConfig:
     SECRET_KEY = os.getenv('SECRET_KEY', 'fallguard-secret-key-change-in-production')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', f'sqlite:///{os.path.join(BASE_DIR, "fallguard.db")}')
-
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', f'sqlite:///{_default_db}')
     # Session
     PERMANENT_SESSION_LIFETIME = timedelta(hours=24)
     SESSION_COOKIE_SECURE = False

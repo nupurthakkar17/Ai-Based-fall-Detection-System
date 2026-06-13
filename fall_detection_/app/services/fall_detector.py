@@ -171,9 +171,9 @@ class FallDetector:
             return result
 
         # Stage 3 — fall analysis
-        body_angle      = self._compute_body_angle(kp)
-        center_y_norm   = kp['center'][1] / h
-        body_height_norm= self._compute_body_height(kp, h)
+        body_angle       = self._compute_body_angle(kp)
+        center_y_norm    = kp['center'][1] / h
+        body_height_norm = self._compute_body_height(kp, h)
 
         ps = self.person_state
         velocity = self._compute_velocity(center_y_norm, ps)
@@ -190,9 +190,11 @@ class FallDetector:
         c_inactivity = self._score_inactivity(velocity, now, ps)
 
         # Stage 4 — context
+        # FIX: kp values are (x, y) pixel tuples — extract x and y correctly
         if person_box is None:
-            xs = [v[0] for v in kp.values()]
-            ys = [v[1] for v in kp.values()]
+            pixel_points = [v for k, v in kp.items() if k != '_landmarks' and isinstance(v, tuple)]
+            xs = [pt[0] for pt in pixel_points]
+            ys = [pt[1] for pt in pixel_points]
             person_box = (min(xs), min(ys), max(xs), max(ys))
 
         surface, c_context = self._score_context(person_box, context_boxes)
@@ -408,11 +410,13 @@ class FallDetector:
                     pa = (int(lms[a].x*w), int(lms[a].y*h))
                     pb = (int(lms[b].x*w), int(lms[b].y*h))
                     cv2.line(frame, pa, pb, (0,200,255), 2)
-                except: pass
+                except Exception:
+                    pass
             for lm in lms:
                 try:
-                    cv2.circle(frame,(int(lm.x*w),int(lm.y*h)),4,(255,255,255),-1)
-                except: pass
+                    cv2.circle(frame, (int(lm.x*w), int(lm.y*h)), 4, (255,255,255), -1)
+                except Exception:
+                    pass
 
         # Person box
         if person_box:
